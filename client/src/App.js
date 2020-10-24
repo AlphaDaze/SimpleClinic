@@ -5,6 +5,10 @@ import SideBar from "./components/layout/SideBar";
 import Content from "./components/layout/Content";
 import { BrowserRouter as Router } from 'react-router-dom';
 
+// Redux
+import { Provider } from 'react-redux';
+import store from './store';
+
 
 class App extends React.Component {
     constructor(props) {
@@ -55,12 +59,14 @@ class App extends React.Component {
 
     render() {
         return (
-            <Router>
-                <div className="App wrapper">
-                    <SideBar toggle={this.toggle} isOpen={this.state.isOpen} />
-                    <Content toggle={this.toggle} isOpen={this.state.isOpen} />
-                </div>
-            </Router>
+            <Provider store={store}>
+                <Router>
+                    <div className="App wrapper">
+                        <SideBar toggle={this.toggle} isOpen={this.state.isOpen} />
+                        <Content toggle={this.toggle} isOpen={this.state.isOpen} />
+                    </div>
+                </Router>
+            </Provider>
         );
     }
 }

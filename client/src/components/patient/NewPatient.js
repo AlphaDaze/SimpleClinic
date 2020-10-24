@@ -1,20 +1,26 @@
 import React, { Fragment, useState } from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createPatient } from '../../actions/patient';
+
 
 const initalState = {
     firstName: '',
     lastName: '',
     phoneNumber: '',
     cnic: '',
-    gender: '',
+    gender: 'Male',
     birthdate: '',
-    firstLine: '',
-    secondLine: '',
-    thirdLine: '',
+    houseNumber: '',
+    streetNumber: '',
+    sector: '',
+    area: '',
     city: '',
-    province: '',
+    province: 'Khyber Pakhtunkhwa',
 };
 
-const NewPatient = () => {
+const NewPatient = ({ createPatient, history }) => {
     const [formData, setFormData] = useState(initalState);
 
     const {
@@ -24,9 +30,10 @@ const NewPatient = () => {
         cnic,
         gender,
         birthdate,
-        firstLine,
-        secondLine,
-        thirdLine,
+        houseNumber,
+        streetNumber,
+        sector,
+        area,
         city,
         province,
     } = formData;
@@ -41,7 +48,24 @@ const NewPatient = () => {
 
     const onSubmit = e => {
         e.preventDefault();
-        console.log()
+        
+        // destructure form here
+        const sendData = {
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            phoneNumber: formData.phoneNumber,
+            cnic: formData.cnic,
+            gender: formData.gender,
+            birthdate: formData.birthdate,
+            firstLine: "House No. " + formData.houseNumber + ", Street No. " + formData.streetNumber,
+            secondLine: formData.sector,
+            thirdLine: formData.area,
+            city: formData.city,
+            province: formData.province,
+        };
+
+        createPatient(sendData, history);
+        console.log(sendData)
     }
 
     return (
@@ -142,6 +166,25 @@ const NewPatient = () => {
                                         </div>
                                     </div>
                                 </div>
+                                <div className="col-md-6">
+                                    <div className="form-group row">
+                                        <label
+                                            className="col-sm-3 col-form-label"
+                                            style={{ marginTop: "-12px" }} >
+                                            CNIC Number
+                                        </label>
+                                        <div className="col-sm-9">
+                                            <input type="number"
+                                                className="form-control"
+                                                max={9999999999999}
+                                                placeholder="0000000000000"
+                                                name='cnic'
+                                                value={cnic}
+                                                onChange={e => onTextChange(e)}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <p className="card-description">
                                 Address
@@ -149,28 +192,36 @@ const NewPatient = () => {
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="form-group row">
-                                        <label className="col-sm-3 col-form-label">House Number</label>
+                                        <label 
+                                            className="col-sm-3 col-form-label"
+                                            style={{ marginTop: "-12px" }}>
+                                            House Number
+                                        </label>
                                         <div className="col-sm-9">
-                                            <input type="text"
+                                            <input type="number"
+                                                placeholder="1-9999"
                                                 className="form-control"
-                                                name='lastName'
-                                                value={lastName}
+                                                name='houseNumber'
+                                                value={houseNumber}
                                                 onChange={e => onTextChange(e)}
-                                                required
                                             />
                                         </div>
                                     </div>
                                 </div>
-                             -   <div className="col-md-6">
+                                <div className="col-md-6">
                                     <div className="form-group row">
-                                        <label className="col-sm-3 col-form-label">Street Number</label>
+                                    <label 
+                                        className="col-sm-3 col-form-label"
+                                        style={{ marginTop: "-12px" }}>
+                                        Street Number
+                                    </label>
                                         <div className="col-sm-9">
-                                            <input type="text"
+                                            <input type="number"
                                                 className="form-control"
-                                                name='lastName'
-                                                value={lastName}
+                                                placeholder="1-999"
+                                                name='streetNumber'
+                                                value={streetNumber}
                                                 onChange={e => onTextChange(e)}
-                                                required
                                             />
                                         </div>
                                     </div>
@@ -183,10 +234,10 @@ const NewPatient = () => {
                                         <div className="col-sm-9">
                                             <input type="text"
                                                 className="form-control"
-                                                name='lastName'
-                                                value={lastName}
+                                                placeholder="Sector L2"
+                                                name='sector'
+                                                value={sector}
                                                 onChange={e => onTextChange(e)}
-                                                required
                                             />
                                         </div>
                                     </div>
@@ -197,10 +248,10 @@ const NewPatient = () => {
                                         <div className="col-sm-9">
                                             <input type="text"
                                                 className="form-control"
-                                                name='thirdLine'
-                                                value={thirdLine}
+                                                placeholder="Hayatabad"
+                                                name='area'
+                                                value={area}
                                                 onChange={e => onTextChange(e)}
-                                                required
                                             />
                                         </div>
                                     </div>
@@ -213,10 +264,10 @@ const NewPatient = () => {
                                         <div className="col-sm-9">
                                             <input type="text"
                                                 className="form-control"
+                                                placeholder="Peshawar"
                                                 name='city'
                                                 value={city}
                                                 onChange={e => onTextChange(e)}
-                                                required
                                             />
                                         </div>
                                     </div>
@@ -240,7 +291,7 @@ const NewPatient = () => {
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                            <button type="submit" className="btn btn-primary mr-2">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -249,4 +300,9 @@ const NewPatient = () => {
     );
 }
 
-export default NewPatient;
+NewPatient.propTypes = {
+    createPatient: PropTypes.func.isRequired,
+};
+
+
+export default connect(null, { createPatient})(withRouter(NewPatient));

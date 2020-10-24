@@ -40,6 +40,10 @@ const PatientSchema = new mongoose.Schema({
         province: {
             type: String,
         },
+        country: {
+            type: String,
+            default: "Pakistan"
+        }
     },
     date: {
         type: Date,

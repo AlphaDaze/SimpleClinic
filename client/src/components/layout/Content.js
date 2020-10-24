@@ -6,7 +6,7 @@ import { Route, Switch } from 'react-router-dom';
 
 
 import Home from './Home';
-import AddPatient from '../patient/AddPatient'
+import NewPatient from '../patient/NewPatient'
 
 class Content extends React.Component {
     render() {
@@ -18,7 +18,7 @@ class Content extends React.Component {
                     <Route
                         exact
                         path='/add-patient'
-                        component={AddPatient}
+                        component={NewPatient}
                     />
                 </Switch>
             </Container>

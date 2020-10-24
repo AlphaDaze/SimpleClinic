@@ -15,7 +15,6 @@ body {
     background-color: #f5f9fc;
 }
 
-
 a,
 a:hover,
 a:focus {
@@ -116,7 +115,7 @@ li a.dropdown-toggle::after {
 
 @media only screen and (max-width: 575.98px) {
     body {
-        overflow:    hidden;
+        overflow-y: auto
     }
     
     .content.is-open {
@@ -146,3 +145,28 @@ li a.dropdown-toggle::after {
 }
 
 
+/* MY STUFF */
+/* hide arrows from input */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input[type=number]::placeholder {
+    opacity: 0.3;
+}
+input[type=text]::placeholder {
+    opacity: 0.3;
+}
+
+.card-description {
+    font-weight: bold;
+    opacity: 0.5;
+    font-size: medium;
+}

@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const { check, validationResult } = require('express-validator');
 
 const Patient = require('../../models/Patient');
 const Prescription = require('../../models/Prescription');
@@ -65,21 +64,7 @@ router.get('/:patientID', async (req, res) => {
 // @access  Private
 router.post(
     '/',
-    [
-        check('fistName', 'Fist name is required').notEmpty(),
-        check('lastName', 'Last name is required').notEmpty(),
-        check('phoneNumber', 'phone number is required').notEmpty().isNumeric,
-        check('gender', 'Gender is required').notEmpty(),
-        check('birthdate', 'Birthdate is required').notEmpty().isDate(),
-        check('gender', 'Gender is required').notEmpty(),
-    ],
     async (req, res) => {
-        const errors = validationResult(req);
-
-        if (!errors.isEmpty) {
-            return res.status(400).json({ errors: errors.array() });
-        }
-
         const {
             firstName,
             lastName,
@@ -92,7 +77,32 @@ router.post(
             thirdLine,
             city,
             province,
+            country
         } = req.body;
+
+
+        // check if required values are present
+        let valueErrors = "";
+
+        if (!firstName) {
+            valueErrors += "firstName empty, ";
+        }
+        if (!lastName) {
+            valueErrors += "lastName empty, ";
+        }
+        if (!phoneNumber) {
+            valueErrors += "phoneNumber empty, ";
+        }
+        if (!gender) {
+            valueErrors += "gender empty, ";
+        }
+        if (!birthdate) {
+            valueErrors += "birthdate empty, ";
+        }
+        if (valueErrors) {
+            return res.status(400).json({ errors: valueErrors });
+        }
+
 
         // Build patient object
         const patientFields = {
@@ -108,12 +118,13 @@ router.post(
                 thirdLine: thirdLine || null,
                 city: city || null,
                 province: province || null,
+                country: country || "Pakistan",
             },
         };
 
         try {
             let patient = await Patient.findOne({
-                firstName: fistName,
+                firstName: firstName,
                 lastName: lastName,
                 phoneNumber: phoneNumber,
             });
