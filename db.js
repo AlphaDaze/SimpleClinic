@@ -19,3 +19,7 @@ const connectDB = async () => {
 };
 
 module.exports = connectDB;
+
+
+// old server
+//"mongoURI": "mongodb+srv://patients:153624.co.uk@firstclinic.uraqu.mongodb.net/<dbname>?retryWrites=true&w=majority"

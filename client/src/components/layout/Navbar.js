@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAlignLeft } from "@fortawesome/free-solid-svg-icons";
 import { Navbar, Button, Nav } from "react-bootstrap";
@@ -14,13 +15,13 @@ class NavBar extends React.Component {
         <Button variant="outline-info" onClick={this.props.toggle}>
           <FontAwesomeIcon icon={faAlignLeft} />
         </Button>
+
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ml-auto" navbar>
-            <Nav.Link href="#">page</Nav.Link>
-            <Nav.Link href="#">page</Nav.Link>
-            <Nav.Link href="#">page</Nav.Link>
-            <Nav.Link href="#">page</Nav.Link>
+            <NavLink exact className="navbarLink" exact activeClassName="activeLink navbarLink" to="/">Home</NavLink>
+            <NavLink exact className="navbarLink" exact activeClassName="activeLink navbarLink" to="/add-patient">Add Patient</NavLink>
+            <NavLink exact className="navbarLink" exact activeClassName="activeLink navbarLink" to="/patients">Find Patient</NavLink>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

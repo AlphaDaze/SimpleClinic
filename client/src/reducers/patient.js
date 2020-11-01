@@ -1,5 +1,6 @@
 import {
     GET_PATIENT,
+    GET_PATIENTS,
     PATIENT_ERROR
 } from '../actions/constants';
 
@@ -10,14 +11,20 @@ const initialState = {
     loading: true,
 }
 
-export default function(state = initialState, action) {
+const patient = (state = initialState, action) => {
     const { type, payload } = action;
     
     switch (type) {
         case GET_PATIENT:
             return {
                 ...state, 
-                patients: payload, 
+                patient: payload,
+                loading: false
+            };
+        case GET_PATIENTS:
+            return {
+                ...state, 
+                patients: payload,
                 loading: false
             };
         case PATIENT_ERROR:
@@ -29,4 +36,6 @@ export default function(state = initialState, action) {
         default:
             return state;
     }
-}
+  }
+  
+export default patient;

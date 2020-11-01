@@ -18,6 +18,10 @@ router.get('/', async (req, res) => {
             firstName: 1,
             lastName: 1,
             phoneNumber: 1,
+            birthdate: 1,
+            address: {
+                firstLine: 1,
+            }
         });
 
         return res.json(patients);
