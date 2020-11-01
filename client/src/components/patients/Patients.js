@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import PatientItem from './PatientItem'
@@ -20,9 +21,11 @@ const Patients = ({ getAllPatients, patient: { patients, loading} }) => {
                     <div className="paitents">
                         {patients.length > 0 ? ((
                             patients.map(patient => (
-                                <Card body style={{ margin: "12px" }} key={patient._id}>
-                                    <PatientItem  patient={patient} />
-                                </Card>
+                                <Link to={`/patients/${patient._id}`} key={patient._id}>
+                                    <Card body className="btnPatient" style={{ margin: "12px" }}>
+                                        <PatientItem  patient={patient} />
+                                    </Card>
+                                </Link>
                             )))
                         ) : <Card.Text>No patients found...</Card.Text>}
                     </div>

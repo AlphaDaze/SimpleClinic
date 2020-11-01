@@ -188,9 +188,33 @@ input[type=text]::placeholder {
 .navbarLink {
     padding-right: 1.5rem;
     padding-left: 1.5rem;
- }
+    
+}
+
+.sidebarLink {
+    padding: 1rem;
+}
 
 .activeLink {
     font-weight: bold;
     font-size: medium;
  }
+
+
+.btn {
+    background-color: #ddd;
+    border: none;
+    color: black;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.btnPatient {
+    transition: 0.3s;
+}
+
+.btnPatient:hover,
+.btn:hover {
+    background-color: #1b96e9;
+    color: white;
+}

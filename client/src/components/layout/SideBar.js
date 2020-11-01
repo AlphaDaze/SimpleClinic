@@ -1,15 +1,17 @@
+
+
+
+
 import React from "react";
+import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
-  faBriefcase,
-  faPaperPlane,
-  faQuestion,
-  faImage,
-  faCopy,
-  faTimes
+  faUser,
+  faUsers,
+  faTimes,
 } from "@fortawesome/free-solid-svg-icons";
-import SubMenu from "./SubMenu";
+//import SubMenu from "./SubMenu";
 import { Nav, Button } from "react-bootstrap";
 import classNames from "classnames";
 
@@ -26,52 +28,37 @@ class SideBar extends React.Component {
           >
             <FontAwesomeIcon icon={faTimes} pull="right" size="xs" />
           </Button>
-          <h3>react-bootstrap sidebar</h3>
+          <h3>Jamshed's Clinic</h3>
         </div>
 
         <Nav className="flex-column pt-2">
-          <p className="ml-3">Heading</p>
+          <p className="ml-3">Clinic</p>
 
-          <Nav.Item className="active">
-            <Nav.Link href="/">
-              <FontAwesomeIcon icon={faHome} className="mr-2" />
-                            Home
-                        </Nav.Link>
-          </Nav.Item>
+          
+            <NavLink exact activeClassName="activeLink" to="/">
+              <Nav.Item className="active sidebarLink">
+                <FontAwesomeIcon icon={faHome} className="mr-2" />
+                     Home
+              </Nav.Item>
 
-          <SubMenu
-            title="Pages"
-            icon={faCopy}
-            items={["Link", "Link2", "Active"]}
-          />
+            </NavLink>
 
-          <Nav.Item>
-            <Nav.Link href="/">
-              <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
-                            About
-                        </Nav.Link>
-          </Nav.Item>
 
-          <Nav.Item>
-            <Nav.Link href="/">
-              <FontAwesomeIcon icon={faImage} className="mr-2" />
-                            Portfolio
-                        </Nav.Link>
-          </Nav.Item>
+            <NavLink exact activeClassName="activeLink" to="/add-patient">
+              <Nav.Item className="active sidebarLink">
+                <FontAwesomeIcon icon={faUser} className="mr-2" />
+                     Add Patient
+              </Nav.Item>
 
-          <Nav.Item>
-            <Nav.Link href="/">
-              <FontAwesomeIcon icon={faQuestion} className="mr-2" />
-                            FAQ
-                        </Nav.Link>
-          </Nav.Item>
+            </NavLink>
 
-          <Nav.Item>
-            <Nav.Link href="/">
-              <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
-                            Contact
-                        </Nav.Link>
-          </Nav.Item>
+            <NavLink exact activeClassName="activeLink" to="/patients">
+              <Nav.Item className="active sidebarLink">
+                <FontAwesomeIcon icon={faUsers} className="mr-2" />
+                     Find Patient
+              </Nav.Item>
+
+            </NavLink>
         </Nav>
       </div>
     );
@@ -79,3 +66,6 @@ class SideBar extends React.Component {
 }
 
 export default SideBar;
+
+
+
