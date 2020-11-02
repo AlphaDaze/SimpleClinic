@@ -1,8 +1,33 @@
+/*( https://palx.jxnblk.com/ */
+:root {
+    --primary: #00c7c7;
+    --primary_light1: #00dada;
+    --primary_light2: #00eaea;
+    --primary_light3: #00fafa;
+    --primary_light4: #94ffff;
+    --primary_dark1: #00b2b2;
+    --primary_dark2: #009999;
+    --primary_dark3: #007979;
+    --primary_dark4: #004747;
+
+    --wbhue1: #ffffff;
+    --wbhue2: #eaeeee;
+    --wbhue3: #cad5d5;
+    --wbhue4: #a3b7b7;
+    --wbhue5: #708f8f;
+    --wbhue6: #344242;
+    --wbhue7: #181a1a;
+}
+
+
+
 .App {
     display: flex;
     width: 100%;
     align-items: stretch;
 }
+
+
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 @import "https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,500,600,700";
@@ -29,8 +54,8 @@ a:focus {
 .sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #354052;
-    color: #adb5bd;
+    background: var(--primary_dark1);
+    color: var(--primary_dark4);
     margin-left: -250px;
     transition: all 0.5s;
 }
@@ -42,44 +67,44 @@ a:focus {
 
 
 .sidebar-header {
-    background: #313b4c;
-    color: #adb5bd;
+    background: var(--primary_dark1);
+    color: var(--wbhue4);
 }
 
 .sidebar-header h3{
-    color: #fff;
+    color: var(--wbhue2);
     padding: 1em;
 }
 
 .sidebar ul p {
-    color: #fff;
+    color: var(--wbhue2);
     padding: 10px;
 }
 
 .collapse.show, 
 .collapsing {
-    background: #313b4c;
+    background: var(--primary_dark1);
 }
 
 .nav-item {
     /*color: #ced4da;*/
-    color: #adb5bd;
+    color: var(--wbhue1);
     font-weight: 300;
 }
 
 .nav-item.open {
-    color: #e9ecef;
-    background: #313b4c;
+    color: var(--wbhue2);
+    background: var(--primary_dark1);
 }
 
 .nav-item.active {
-    color: #e9ecef;
-    background: #2d3646 !important;
+    color: var(--wbhue2);
+    background: var(--primary_dark1) !important;
 }
 
 .nav-item:hover {
-    background: #313b4c;
-    color: #fff;
+    background: var(--primary_dark1);
+    color: var(--wbhue1);
     transition: .2s;
 }
 
@@ -165,6 +190,12 @@ input[type=text]::placeholder {
     opacity: 0.3;
 }
 
+
+.elevationSmall {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.26);
+}
+
+
 .card-description {
     font-weight: bold;
     opacity: 0.5;
@@ -188,25 +219,47 @@ input[type=text]::placeholder {
 .navbarLink {
     padding-right: 1.5rem;
     padding-left: 1.5rem;
-    
 }
 
 .sidebarLink {
     padding: 1rem;
+    color: var(--primary_light4);
+    color: var(--wbhue1);
+    font-weight: 300;
 }
 
-.activeLink {
+.sidebarLink:hover
+{
+    color: var(--primary_dark4);
+}
+
+
+.sidebarLinkActive {
+    color: var(--primary_dark4);
+}
+
+
+
+.menubarLinkActove {
     font-weight: bold;
     font-size: medium;
  }
 
 
+ .btnLink {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+ }
+
 .btn {
-    background-color: #ddd;
-    border: none;
-    color: black;
+    background-color: var(--primary_light1);
+    color: var(--wbhue6);
     text-align: center;
-    transition: 0.3s;
+    transition: 0.4s;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.26);
+    border: 1px solid var(--primary_light1);
+    margin: 10px;
 }
 
 .btnPatient {
@@ -215,6 +268,15 @@ input[type=text]::placeholder {
 
 .btnPatient:hover,
 .btn:hover {
-    background-color: #1b96e9;
-    color: white;
+    background-color: var(--primary_dark1);
+    color: var(--wbhue1);
+
+    transition: .4s;
+    background: var(--primary_light1);
+    box-shadow: 0 3px 9px 0 rgba(0, 0, 0, 0.26);
+    border: 1px solid var(--primary_light1);
+}
+
+.cardHeader {
+    background-color: var(--primary);
 }

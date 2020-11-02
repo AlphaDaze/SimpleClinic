@@ -14,7 +14,7 @@ const Patients = ({ getAllPatients, patient: { patients, loading} }) => {
 
     return (
         <Fragment>
-            <Card>
+            <Card className="elevationSmall ">
                 <Card.Body>
                     <Card.Title>Patients</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">Select a patient</Card.Subtitle>
@@ -22,7 +22,7 @@ const Patients = ({ getAllPatients, patient: { patients, loading} }) => {
                         {patients.length > 0 ? ((
                             patients.map(patient => (
                                 <Link to={`/patients/${patient._id}`} key={patient._id}>
-                                    <Card body className="btnPatient" style={{ margin: "12px" }}>
+                                    <Card body className="btnPatient elevationSmall " style={{ margin: "12px" }}>
                                         <PatientItem  patient={patient} />
                                     </Card>
                                 </Link>

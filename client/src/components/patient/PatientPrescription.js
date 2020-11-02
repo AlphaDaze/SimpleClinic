@@ -18,8 +18,7 @@ const PatientPrescription = ({
     const end = convertToDate(endDate);
 
     return (
-        <Card>
-            
+        <Card className="elevationSmall" style={{ marginBottom: "0.5rem" }}>
             <Card.Body>
                 <Card.Title className="card-description row-text-space">Prescription {index+1}</Card.Title>
                 <Container>

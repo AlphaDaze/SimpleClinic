@@ -19,9 +19,9 @@ class NavBar extends React.Component {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ml-auto" navbar>
-            <NavLink exact className="navbarLink" activeClassName="activeLink" to="/">Home</NavLink>
-            <NavLink exact className="navbarLink" activeClassName="activeLink" to="/add-patient">Add Patient</NavLink>
-            <NavLink exact className="navbarLink" activeClassName="activeLink" to="/patients">Find Patient</NavLink>
+            <NavLink exact className="navbarLink" activeClassName="menubarLinkActove" to="/">Home</NavLink>
+            <NavLink exact className="navbarLink" activeClassName="menubarLinkActove" to="/add-patient">Add Patient</NavLink>
+            <NavLink exact className="navbarLink" activeClassName="menubarLinkActove" to="/patients">Find Patient</NavLink>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

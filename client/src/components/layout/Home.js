@@ -8,14 +8,14 @@ const Home = () => {
             <Container>
                 <Row>
                     <Col>
-                        <Link exact className="navbarLink" to="/add-patient">
+                        <Link className="btnLink " to="/add-patient">
                             <Card body className="btn">
                                 Add Patient
                             </Card>
                         </Link>
                     </Col>
                     <Col>
-                        <Link exact className="navbarLink" to="/patients">
+                        <Link className="btnLink " to="/patients">
                             <Card body className="btn">
                                 Find Patient
                             </Card>

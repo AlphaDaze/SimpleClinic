@@ -57,12 +57,22 @@ class App extends React.Component {
         this.setState({ isOpen: !this.state.isOpen });
     };
 
+    toggleLink = () => {
+        const width = window.innerWidth;
+        const widthLimit = 576;
+        const isMobile = width <= widthLimit;
+
+        if (isMobile) {
+            this.setState({ isOpen: !this.state.isOpen });
+        }
+    };
+
     render() {
         return (
             <Provider store={store}>
                 <Router>
                     <div className="App wrapper">
-                        <SideBar toggle={this.toggle} isOpen={this.state.isOpen} />
+                        <SideBar toggle={this.toggle} toggleLink={this.toggleLink} isOpen={this.state.isOpen} />
                         <Content toggle={this.toggle} isOpen={this.state.isOpen} />
                     </div>
                 </Router>

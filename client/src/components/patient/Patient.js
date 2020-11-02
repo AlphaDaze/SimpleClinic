@@ -26,27 +26,33 @@ const Patient = ({ getPatientById, patient: {patient, loading}, match}) => {
                 <Fragment>
                     <Container>
                         <Row>
-                            <Col>
-                                <PatientInfo patient={patient.patient} />
+                            <Col sm={6}>
+                                <Card  className="elevationSmall"  style={{ marginBottom: "2rem" }}>
+                                    <Card.Header className="cardHeader">Personal Info</Card.Header>
+                                    <Card.Body>
+                                        <PatientInfo patient={patient.patient} />
+                                    </Card.Body>
+                                </Card>
+                                
                             </Col>
 
-                            <Col>
-                                <Card>
-                                    <Card.Header>Prescriptions</Card.Header>
+                            <Col sm={6}>
+                                <Card className="elevationSmall">
+                                    <Card.Header className="cardHeader">Prescriptions</Card.Header>
                                     <Card.Body>
                                         {patient.prescriptions.length > 0 ? ((
                                         patient.prescriptions.map((prescription, index) => (
                                             <PatientPrescription prescription={prescription} index={index} key={prescription._id}/>
                                         )))
-                                        ) : <Card.Text>No prescriptions added, Add one here!</Card.Text>}
+                                        ) : <Card.Text>No prescriptions added, Add one here!‏‏‎</Card.Text>}
                                     </Card.Body>
                                 </Card>
                             </Col>
                         </Row>
                         <Row className="row-space">
                             <Col>
-                                <Card>
-                                    <Card.Header>Visits</Card.Header>
+                                <Card className="elevationSmall">
+                                    <Card.Header className="cardHeader">Visits</Card.Header>
                                     <Card.Body>
                                         {patient.visits.length > 0 ? ((
                                         patient.visits.slice(0).reverse().map((visit, index) => (

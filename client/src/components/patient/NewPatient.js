@@ -75,7 +75,7 @@ const NewPatient = ({ createPatient, history }) => {
 
     return (
         <Fragment>
-            <div className="card">
+            <div className="card elevationSmall">
                 <div className="card-body">
                     <h4 className="card-title">Add Patient</h4>
                     <form className="form-" onSubmit={e => onSubmit(e)}>
