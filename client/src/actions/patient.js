@@ -17,16 +17,17 @@ export const createPatient = (formData, history, edit = false) => async dispatch
         };
 
         const res = await axios.post('/api/patient', formData, config);
-        console.log(res.data);
+
         dispatch({
             type: GET_PATIENT,
             payload: res.data
         });
 
-        dispatch(setAlert(edit ? 'Patient Update' : 'Patient Created'));
+        dispatch(setAlert(edit ? 'Patient Updated' : 'Patient Created'));
 
+        // redirect if aren't editing
         if (!edit) {
-            history.push('/');
+            history.push('/patients/' + res.data._id);
         }
 
     } catch (err) {

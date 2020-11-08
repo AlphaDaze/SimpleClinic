@@ -6,9 +6,11 @@ import { Route, Switch } from 'react-router-dom';
 
 
 import Home from './Home';
-import NewPatient from '../patient/NewPatient'
+import NewPatient from '../patient-forms/NewPatient'
 import Patients from '../patients/Patients'
 import Patient from '../patient/Patient'
+
+import NewPrescription from '../patient-forms/NewPrescription'
 
 class Content extends React.Component {
     render() {
@@ -31,6 +33,11 @@ class Content extends React.Component {
                         exact
                         path='/patients/:id'
                         component={Patient}
+                    />
+                    <Route
+                        exact
+                        path='/patients/:id/add-prescription'
+                        component={NewPrescription}
                     />
                 </Switch>
             </Container>

@@ -48,7 +48,7 @@ const NewPatient = ({ createPatient, history }) => {
 
     const onSubmit = e => {
         e.preventDefault();
-        
+
         // destructure form here
         const parsedData = {
             firstName: formData.firstName,

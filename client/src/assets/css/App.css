@@ -17,6 +17,9 @@
     --wbhue5: #708f8f;
     --wbhue6: #344242;
     --wbhue7: #181a1a;
+
+    --danger1: #AE0D0A;
+    --danger2: #F22B29;
 }
 
 
@@ -183,6 +186,7 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+
 input[type=number]::placeholder {
     opacity: 0.3;
 }
@@ -277,6 +281,44 @@ input[type=text]::placeholder {
     border: 1px solid var(--primary_light1);
 }
 
+.btnRemove {
+    background-color: var(--danger1);
+    color: var(--wbhue1);
+    border: 1px solid var(--danger1);
+    transition: 0.4s;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.26);
+    margin: 10px;
+    text-align: center;
+}
+
+.btnRemove:hover {
+    background-color: var(--danger2);
+    color: var(--wbhue2);
+
+    transition: .4s;
+    background: var(--danger2);
+    box-shadow: 0 3px 9px 0 rgba(0, 0, 0, 0.26);
+    border: 1px solid var(--danger2);
+}
+
+.btnHeader {
+    padding: 0px;
+    float: right;
+    margin: 0px;
+    height: 25px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+
+
 .cardHeader {
     background-color: var(--primary);
+}
+
+.heighttext {
+    display:inline-block;
+    padding:15px 10px;
+    line-height:140%;
 }

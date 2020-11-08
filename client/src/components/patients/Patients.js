@@ -22,7 +22,7 @@ const Patients = ({ getAllPatients, patient: { patients, loading} }) => {
                         {patients.length > 0 ? ((
                             patients.map(patient => (
                                 <Link to={`/patients/${patient._id}`} key={patient._id}>
-                                    <Card body className="btnPatient elevationSmall " style={{ margin: "12px" }}>
+                                    <Card body className="btnPatient elevationSmall" style={{ margin: "12px" }}>
                                         <PatientItem  patient={patient} />
                                     </Card>
                                 </Link>

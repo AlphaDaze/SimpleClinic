@@ -28,9 +28,9 @@ router.get('/:prescriptionID', async (req, res) => {
 });
 
 // @router  POST api/patient/prescription/new/:patientID
-// @desc    Add a visit for a patient
+// @desc    Add a prescription for a patient
 // @access  Private
-router.post('/new/:patientID', async (req, res) => {
+router.post('/:patientID', async (req, res) => {
     const { drug, units, directions, notes, startDate, endDate } = req.body;
 
     const prescriptionFields = {

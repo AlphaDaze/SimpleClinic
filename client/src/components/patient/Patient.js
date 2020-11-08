@@ -1,11 +1,17 @@
 import React, { Fragment, useEffect} from 'react'
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getPatientById } from '../../actions/patient';
-import { Card, Container, Row, Col } from 'react-bootstrap';
+import { Card, Container, Row, Col, Button } from 'react-bootstrap';
 import PatientInfo from './PatientInfo'
 import PatientPrescription from './PatientPrescription'
 import PatientVisit from './PatientVisit'
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faPlus
+} from "@fortawesome/free-solid-svg-icons";
 
 const Patient = ({ getPatientById, patient: {patient, loading}, match}) => {
     useEffect(() => {
@@ -20,6 +26,8 @@ const Patient = ({ getPatientById, patient: {patient, loading}, match}) => {
         );
     }
 
+    const addPrescriptionLink = "/patients/" + match.params.id + "/add-prescription";
+
     return (
         <Fragment>
             {loading ? <Card body>Loading...</Card> : 
@@ -33,12 +41,24 @@ const Patient = ({ getPatientById, patient: {patient, loading}, match}) => {
                                         <PatientInfo patient={patient.patient} />
                                     </Card.Body>
                                 </Card>
-                                
                             </Col>
 
                             <Col sm={6}>
                                 <Card className="elevationSmall">
-                                    <Card.Header className="cardHeader">Prescriptions</Card.Header>
+                                    <Card.Header className="cardHeader">
+                                        <Row>
+                                            <Col>
+                                                Prescription
+                                            </Col>
+                                            <Col>
+                                                <Link className="btnLink"  to={addPrescriptionLink}>
+                                                    <Button className="btn btnHeader" >
+                                                        <FontAwesomeIcon icon={faPlus} size="xs" style={{paddingBottom: "0.1rem"}} />
+                                                    </Button>
+                                                </Link> 
+                                            </Col>
+                                        </Row>
+                                    </Card.Header>
                                     <Card.Body>
                                         {patient.prescriptions.length > 0 ? ((
                                         patient.prescriptions.map((prescription, index) => (
