@@ -111,7 +111,7 @@ router.put('/:prescriptionID', async (req, res) => {
 router.delete('/:prescriptionID', async (req, res) => {
     try {
         await Prescription.findOneAndDelete({ _id: req.params.prescriptionID });
-
+ 
         res.json({ msg: 'Prescription deleted' });
     } catch (error) {
         console.error(error.message);

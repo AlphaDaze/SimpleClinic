@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { Card, Container, Row, Col, Button } from 'react-bootstrap';
 import convertToDate from '../../helpers/convertToDate'
-
+import { deletePrescription } from '../../actions/prescription';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faMinus
@@ -11,6 +12,8 @@ import {
 
 const PatientPrescription = ({
     prescription: {
+        _id,
+        patientID,
         drug,
         units,
         directions,
@@ -18,7 +21,8 @@ const PatientPrescription = ({
         startDate,
         endDate,
     },
-    index
+    index,
+    deletePrescription
 }) => {
     const start = convertToDate(startDate);
     const end = convertToDate(endDate);
@@ -32,11 +36,9 @@ const PatientPrescription = ({
                             Prescription {index+1}
                         </Col>
                         <Col>
-                            <Link className="btnLink"  to="/">
-                                <Button className="btnHeader btnRemove" >
-                                    <FontAwesomeIcon icon={faMinus}  style={{paddingBottom: "0.1rem"}} size="xs" />
-                                </Button>
-                            </Link> 
+                            <Button className="btnHeader btnRemove" onClick={() => deletePrescription(_id, patientID)}>
+                                <FontAwesomeIcon icon={faMinus}  style={{paddingBottom: "0.1rem"}} size="xs" />
+                            </Button>
                         </Col>
                     </Row>
                 </Card.Title>
@@ -73,7 +75,9 @@ const PatientPrescription = ({
 
 PatientPrescription.propTypes = {
     prescription: PropTypes.object.isRequired,
+    deletePrescription: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired
 };
-
-export default PatientPrescription;
+  
+  
+export default connect(null, { deletePrescription })(PatientPrescription)

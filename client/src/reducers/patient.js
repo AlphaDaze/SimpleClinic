@@ -1,6 +1,7 @@
 import {
     GET_PATIENT,
     GET_PATIENTS,
+    UPDATE_PATIENT,
     PATIENT_ERROR
 } from '../actions/constants';
 
@@ -16,6 +17,7 @@ const patient = (state = initialState, action) => {
     
     switch (type) {
         case GET_PATIENT:
+        case UPDATE_PATIENT:
             return {
                 ...state, 
                 patient: payload,

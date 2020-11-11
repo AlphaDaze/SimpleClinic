@@ -135,7 +135,6 @@ const NewPrescription = ({ createPrescription, history, match }) => {
                                             name='endDate'
                                             value={endDate}
                                             onChange={e => onChange(e)}
-                                            required
                                         />
                                     </div>
                                 </div>
