@@ -13,7 +13,7 @@ const initalState = {
     directions: '',
     notes: '',
     startDate: currDate,
-    endDate: ''
+    endDate: '',
 };
 
 const NewPrescription = ({ createPrescription, history, match }) => {
@@ -32,7 +32,6 @@ const NewPrescription = ({ createPrescription, history, match }) => {
 
     const onSubmit = e => {
         e.preventDefault();
-
         createPrescription(match.params.id, formData, history);
     }  
     
@@ -93,7 +92,6 @@ const NewPrescription = ({ createPrescription, history, match }) => {
                                             name='directions'
                                             value={directions}
                                             onChange={e => onChange(e)}
-                                            required
                                         />
                                     </div>
                                 </div>
@@ -121,7 +119,6 @@ const NewPrescription = ({ createPrescription, history, match }) => {
                                             name='startDate'
                                             value={startDate}
                                             onChange={e => onChange(e)}
-                                            required
                                         />
                                     </div>
                                 </div>

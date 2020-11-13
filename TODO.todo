@@ -1,22 +1,23 @@
-Make Remove Prescription button work in PatientPrescription.js, add confirm button
 
 Add editing proifle
 Add editing prescriptions
-
-Add visits
-Remove visits
 Edit visits
 
+add confirm button to deletes
 
 PRINTING
 
-Add searching patients
-
-Fix Alerts
 Add titles for different pages
-
+Add searching patients
 Allow deleting patients
 
+
+
+Fix Alerts
+
+add autocomplete medicaiton
+
+add urdu translation
 
 
 
@@ -30,4 +31,8 @@ Fixes:
     - Fix the way prescription and visits are retrieved
     - They should be retrieved seperately without patientID
     - Change deletePrescription to update patient without having to get the patient again like done currently
+    - fix visit api call /new/ added prescription not
     
+
+
+use moments for date management

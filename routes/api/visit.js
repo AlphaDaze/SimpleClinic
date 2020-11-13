@@ -85,8 +85,8 @@ router.put('/:visitID', async (req, res) => {
         diagnosis,
         whiteBlood,
         haemoglobin,
-        urea,
         creatinine,
+        urea,
         followup,
     } = req.body;
 

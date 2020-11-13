@@ -317,8 +317,21 @@ input[type=text]::placeholder {
     background-color: var(--primary);
 }
 
+.titleCard {
+    color: var(--wbhue1);
+    background-color: var(--wbhue5);
+}
+
 .heighttext {
     display:inline-block;
     padding:15px 10px;
     line-height:140%;
+}
+
+.spacerAboveLarge {
+    margin-top: 3rem;
+}
+
+.spacerAboveSmall {
+    margin-top: 1rem;
 }

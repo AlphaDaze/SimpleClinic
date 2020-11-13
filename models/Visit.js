@@ -31,7 +31,7 @@ const VisitSchema = new mongoose.Schema({
         // TODO: XRAY
         // xray: {
         //  type: String,
-        //},
+        //n},
     },
     followup: {
         type: Date,

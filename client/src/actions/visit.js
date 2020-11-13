@@ -2,13 +2,13 @@ import axios from 'axios';
 import { setAlert } from './alert';
 
 import {
-    GET_PRESCRIPTION,
-    PRESCRIPTION_ERROR,
+    GET_VISIT,
+    VISIT_ERROR,
     UPDATE_PATIENT
 } from './constants';
 
-// Create prescription
-export const createPrescription = (patientID, formData, history) => async dispatch => {
+// Create visit
+export const createVisit = (patientID, formData, history) => async dispatch => {
     try {
         const config = {
             headers: {
@@ -16,10 +16,10 @@ export const createPrescription = (patientID, formData, history) => async dispat
             }
         };
 
-        const res = await axios.post(`/api/patient/prescription/${patientID}`, formData, config);
+        const res = await axios.post(`/api/patient/visit/new/${patientID}`, formData, config);
 
         dispatch({
-            type: GET_PRESCRIPTION,
+            type: GET_VISIT,
             payload: res.data
         });
 
@@ -27,7 +27,7 @@ export const createPrescription = (patientID, formData, history) => async dispat
 
     } catch (err) {
          dispatch({
-            type: PRESCRIPTION_ERROR,
+            type: VISIT_ERROR,
             payload: { 
                 msg: err.response.statusText, 
                 status: err.response.status 
@@ -37,18 +37,18 @@ export const createPrescription = (patientID, formData, history) => async dispat
 }
 
 
-// Get prescription by ID - not used yet
-export const getPrescriptionById = prescriptionID => async dispatch => {
+// Get visit by ID - not used yet
+export const getVisitById = visitID => async dispatch => {
     try {
-        const res = await axios.get(`/api/patient/prescription/${prescriptionID}`);
+        const res = await axios.get(`/api/patient/visit/${visitID}`);
             
         dispatch({
-            type: GET_PRESCRIPTION,
+            type: GET_VISIT,
             payload: res.data
         });
     } catch (err) {
          dispatch({
-            type: PRESCRIPTION_ERROR,
+            type: VISIT_ERROR,
             payload: { 
                 msg: err.response.statusText, 
                 status: err.response.status 
@@ -57,9 +57,10 @@ export const getPrescriptionById = prescriptionID => async dispatch => {
     }
 }
 
-export const deletePrescription = (prescriptionID, patientID) => async dispatch => {
+export const deleteVisit = (visitID, patientID) => async dispatch => {
     try {
-        await axios.delete(`/api/patient/prescription/${prescriptionID}`);
+        console.log("Deleted Visit");
+        await axios.delete(`/api/patient/visit/${visitID}`);
         
         const res = await axios.get(`/api/patient/${patientID}`);
 
@@ -68,10 +69,10 @@ export const deletePrescription = (prescriptionID, patientID) => async dispatch 
             payload: res.data
         });
 
-        dispatch(setAlert('Prescription Removed', 'success')); // fix alerts
+        dispatch(setAlert('Visit Removed', 'success')); // fix alerts
     } catch (err) {
          dispatch({
-            type: PRESCRIPTION_ERROR,
+            type: VISIT_ERROR,
             payload: { 
                 msg: err.response.statusText, 
                 status: err.response.status 

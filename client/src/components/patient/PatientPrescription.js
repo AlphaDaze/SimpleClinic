@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { Card, Container, Row, Col, Button } from 'react-bootstrap';
@@ -26,7 +25,7 @@ const PatientPrescription = ({
 }) => {
     const start = convertToDate(startDate);
     const end = convertToDate(endDate);
-
+    
     return (
         <Card className="elevationSmall" style={{ marginBottom: "0.5rem" }}>
             <Card.Body>

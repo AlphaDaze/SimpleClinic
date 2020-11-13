@@ -27,6 +27,7 @@ const Patient = ({ getPatientById, patient: {patient, loading}, match}) => {
     }
 
     const addPrescriptionLink = "/patients/" + match.params.id + "/add-prescription";
+    const addVisitLink = "/patients/" + match.params.id + "/add-visit";
 
     return (
         <Fragment>
@@ -72,7 +73,20 @@ const Patient = ({ getPatientById, patient: {patient, loading}, match}) => {
                         <Row className="row-space">
                             <Col>
                                 <Card className="elevationSmall">
-                                    <Card.Header className="cardHeader">Visits</Card.Header>
+                                    <Card.Header className="cardHeader">
+                                        <Row>
+                                            <Col>
+                                                Visit
+                                            </Col>
+                                            <Col>
+                                                <Link className="btnLink"  to={addVisitLink}>
+                                                    <Button className="btn btnHeader" >
+                                                        <FontAwesomeIcon icon={faPlus} size="xs" style={{paddingBottom: "0.1rem"}} />
+                                                    </Button>
+                                                </Link> 
+                                            </Col>
+                                        </Row>
+                                    </Card.Header>
                                     <Card.Body>
                                         {patient.visits.length > 0 ? ((
                                         patient.visits.slice(0).reverse().map((visit, index) => (

@@ -43,6 +43,8 @@ router.post('/:patientID', async (req, res) => {
         endDate: endDate || null,
     };
 
+    console.log(endDate);
+
     try {
         const patient = await Patient.findOne({
             _id: req.params.patientID,

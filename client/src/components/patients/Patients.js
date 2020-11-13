@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import PatientItem from './PatientItem'
 import { getAllPatients } from '../../actions/patient'
-import { Card } from 'react-bootstrap';
+import { Card, Col, Row} from 'react-bootstrap';
 
 
 const Patients = ({ getAllPatients, patient: { patients, loading} }) => {
@@ -18,7 +18,18 @@ const Patients = ({ getAllPatients, patient: { patients, loading} }) => {
                 <Card.Body>
                     <Card.Title>Patients</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">Select a patient</Card.Subtitle>
-                    <div className="paitents">
+                    
+                    <Card body className="elevationSmall titleCard" style={{ marginLeft: "12px", marginRigth: "12px" }}>
+                        <Row>
+                            <Col>Name</Col>
+                            <Col>Gender</Col>
+                            <Col>DOB</Col>
+                            <Col>Phone No.</Col>
+                            <Col>Address</Col>
+                        </Row>
+                    </Card>
+
+                    <div className="paitents spacerAboveLarge">
                         {patients.length > 0 ? ((
                             patients.map(patient => (
                                 <Link to={`/patients/${patient._id}`} key={patient._id}>
