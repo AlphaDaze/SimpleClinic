@@ -59,7 +59,6 @@ export const getVisitById = visitID => async dispatch => {
 
 export const deleteVisit = (visitID, patientID) => async dispatch => {
     try {
-        console.log("Deleted Visit");
         await axios.delete(`/api/patient/visit/${visitID}`);
         
         const res = await axios.get(`/api/patient/${patientID}`);
