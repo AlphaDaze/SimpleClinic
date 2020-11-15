@@ -5,10 +5,17 @@ import SideBar from "./components/layout/SideBar";
 import Content from "./components/layout/Content";
 import { BrowserRouter as Router } from 'react-router-dom';
 
+import {ViewportProvider }from './utils/useViewport'
+
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
+import { loadUser } from './actions/auth';
+import setAuthToken from './utils/setAuthToken';
+import { LOGOUT } from './actions/constants'
 
+import { Helmet } from 'react-helmet'
+const TITLE = "Jamshed's Clinic"
 
 class App extends React.Component {
     constructor(props) {
@@ -44,6 +51,17 @@ class App extends React.Component {
     componentDidMount() {
         this.updateWidth();
         window.addEventListener("resize", this.updateWidth.bind(this));
+
+        // check for token in LS
+        if (localStorage.token) {
+            setAuthToken(localStorage.token);
+        }
+        store.dispatch(loadUser());
+        
+        // log out if logged out in another tab
+        window.addEventListener('storage', () => {
+            if (!localStorage.token) store.dispatch({ type: LOGOUT });
+          });
     }
 
     /**
@@ -70,12 +88,17 @@ class App extends React.Component {
     render() {
         return (
             <Provider store={store}>
-                <Router>
-                    <div className="App wrapper">
-                        <SideBar toggle={this.toggle} toggleLink={this.toggleLink} isOpen={this.state.isOpen} />
-                        <Content toggle={this.toggle} isOpen={this.state.isOpen} />
-                    </div>
-                </Router>
+                <ViewportProvider>
+                    <Helmet>
+                        <title>{ TITLE }</title>
+                    </Helmet>
+                    <Router>
+                        <div className="App wrapper">
+                            <SideBar toggle={this.toggle} toggleLink={this.toggleLink} isOpen={this.state.isOpen} />
+                            <Content toggle={this.toggle} isOpen={this.state.isOpen} />
+                        </div>
+                    </Router>
+                </ViewportProvider>
             </Provider>
         );
     }

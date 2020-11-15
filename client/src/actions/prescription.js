@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from '../utils/api';
 import { setAlert } from './alert';
 
 import {
@@ -16,7 +16,7 @@ export const createPrescription = (patientID, formData, history) => async dispat
             }
         };
 
-        const res = await axios.post(`/api/patient/prescription/${patientID}`, formData, config);
+        const res = await api.post(`/patient/prescription/${patientID}`, formData, config);
 
         dispatch({
             type: GET_PRESCRIPTION,
@@ -40,7 +40,7 @@ export const createPrescription = (patientID, formData, history) => async dispat
 // Get prescription by ID - not used yet
 export const getPrescriptionById = prescriptionID => async dispatch => {
     try {
-        const res = await axios.get(`/api/patient/prescription/${prescriptionID}`);
+        const res = await api.get(`/patient/prescription/${prescriptionID}`);
             
         dispatch({
             type: GET_PRESCRIPTION,
@@ -59,9 +59,9 @@ export const getPrescriptionById = prescriptionID => async dispatch => {
 
 export const deletePrescription = (prescriptionID, patientID) => async dispatch => {
     try {
-        await axios.delete(`/api/patient/prescription/${prescriptionID}`);
+        await api.delete(`/patient/prescription/${prescriptionID}`);
         
-        const res = await axios.get(`/api/patient/${patientID}`);
+        const res = await api.get(`/patient/${patientID}`);
 
         dispatch({
             type: UPDATE_PATIENT,

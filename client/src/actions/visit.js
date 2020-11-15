@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from '../utils/api';
 import { setAlert } from './alert';
 
 import {
@@ -16,7 +16,7 @@ export const createVisit = (patientID, formData, history) => async dispatch => {
             }
         };
 
-        const res = await axios.post(`/api/patient/visit/new/${patientID}`, formData, config);
+        const res = await api.post(`/patient/visit/new/${patientID}`, formData, config);
 
         dispatch({
             type: GET_VISIT,
@@ -40,7 +40,7 @@ export const createVisit = (patientID, formData, history) => async dispatch => {
 // Get visit by ID - not used yet
 export const getVisitById = visitID => async dispatch => {
     try {
-        const res = await axios.get(`/api/patient/visit/${visitID}`);
+        const res = await api.get(`/patient/visit/${visitID}`);
             
         dispatch({
             type: GET_VISIT,
@@ -59,9 +59,9 @@ export const getVisitById = visitID => async dispatch => {
 
 export const deleteVisit = (visitID, patientID) => async dispatch => {
     try {
-        await axios.delete(`/api/patient/visit/${visitID}`);
+        await api.delete(`/patient/visit/${visitID}`);
         
-        const res = await axios.get(`/api/patient/${patientID}`);
+        const res = await api.get(`/patient/${patientID}`);
 
         dispatch({
             type: UPDATE_PATIENT,

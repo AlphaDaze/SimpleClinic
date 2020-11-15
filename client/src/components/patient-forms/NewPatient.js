@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createPatient } from '../../actions/patient';
 
+import { Helmet } from 'react-helmet'
+const TITLE = "Add Patient"
 
 const initalState = {
     firstName: '',
@@ -44,7 +46,7 @@ const NewPatient = ({ createPatient, history }) => {
         ...formData,
         [e.target.name]: e.target.options[e.target.selectedIndex].text
     })
-    const onDateChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
+    const onDateChange = e => setFormData({ ...formData, [e.target.name]: e.target.value }) // remove this
 
     const onSubmit = e => {
         e.preventDefault();
@@ -75,6 +77,10 @@ const NewPatient = ({ createPatient, history }) => {
 
     return (
         <Fragment>
+            <Helmet>
+                <title>{ TITLE }</title>
+            </Helmet>
+            
             <div className="card elevationSmall">
                 <div className="card-body">
                     <h4 className="card-title">Add Patient</h4>
@@ -295,7 +301,7 @@ const NewPatient = ({ createPatient, history }) => {
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" className="btn btn-primary mr-2">Submit</button>
+                        <button type="submit" className="btn btn-primary mr-2">Add</button>
                     </form>
                 </div>
             </div>

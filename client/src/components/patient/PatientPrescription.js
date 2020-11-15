@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { Card, Container, Row, Col, Button } from 'react-bootstrap';
-import convertToDate from '../../helpers/convertToDate'
+import convertToDate from '../../utils/convertToDate'
 import { deletePrescription } from '../../actions/prescription';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

@@ -1,5 +1,6 @@
-import axios from 'axios';
 import { setAlert } from './alert';
+import api from '../utils/api';
+
 
 import {
     GET_PATIENT,
@@ -16,7 +17,7 @@ export const createPatient = (formData, history, edit = false) => async dispatch
             }
         };
 
-        const res = await axios.post('/api/patient', formData, config);
+        const res = await api.post('/patient', formData, config);
 
         dispatch({
             type: GET_PATIENT,
@@ -25,7 +26,7 @@ export const createPatient = (formData, history, edit = false) => async dispatch
 
         dispatch(setAlert(edit ? 'Patient Updated' : 'Patient Created'));
 
-        // redirect if aren't editing
+        // redirect if it isnt editing
         if (!edit) {
             history.push('/patients/' + res.data._id);
         }
@@ -51,7 +52,7 @@ export const createPatient = (formData, history, edit = false) => async dispatch
 export const getAllPatients = () => async dispatch => {
     //dispatch({ type: CLEAR_PATIENT });
     try {
-        const res = await axios.get('/api/patient');
+        const res = await api.get('/patient');
 
         dispatch({
             type: GET_PATIENTS,
@@ -71,7 +72,7 @@ export const getAllPatients = () => async dispatch => {
 // Get patient by ID
 export const getPatientById = patientID => async dispatch => {
     try {
-        const res = await axios.get(`/api/patient/${patientID}`);
+        const res = await api.get(`/patient/${patientID}`);
             
         dispatch({
             type: GET_PATIENT,

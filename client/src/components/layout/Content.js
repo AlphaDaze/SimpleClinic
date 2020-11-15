@@ -4,8 +4,10 @@ import { Container } from "react-bootstrap";
 import NavBar from "./Navbar";
 import { Route, Switch } from 'react-router-dom';
 
+import PrivateRoute from '../routes/PrivateRoute';
 
 import Home from './Home';
+import Login from '../auth/Login';
 import NewPatient from '../patient-forms/NewPatient'
 import Patients from '../patients/Patients'
 import Patient from '../patient/Patient'
@@ -13,34 +15,38 @@ import Patient from '../patient/Patient'
 import NewPrescription from '../patient-forms/NewPrescription'
 import NewVisit from '../patient-forms/NewVisit'
 
+import Alert from '../layout/Alert';
+
 class Content extends React.Component {
     render() {
         return (
             <Container fluid className={classNames("content", { "is-open": this.props.isOpen })}>
                 <NavBar toggle={this.props.toggle} />
+                <Alert />
                 <Switch>
-                    <Route exact path='/' component={Home} />
-                    <Route
+                    <Route exact path='/login' component={Login} />
+                    <PrivateRoute exact path='/' component={Home} />
+                    <PrivateRoute
                         exact
                         path='/add-patient'
                         component={NewPatient}
                     />
-                    <Route
+                    <PrivateRoute
                         exact
                         path='/patients'
                         component={Patients}
                     />
-                    <Route
+                    <PrivateRoute
                         exact
                         path='/patients/:id'
                         component={Patient}
                     />
-                    <Route
+                    <PrivateRoute
                         exact
                         path='/patients/:id/add-prescription'
                         component={NewPrescription}
                     />
-                    <Route
+                    <PrivateRoute
                         exact
                         path='/patients/:id/add-visit'
                         component={NewVisit}

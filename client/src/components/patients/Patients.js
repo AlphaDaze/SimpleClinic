@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import PatientItem from './PatientItem'
 import { getAllPatients } from '../../actions/patient'
 import { Card, Col, Row} from 'react-bootstrap';
+import { Helmet } from 'react-helmet'
+const TITLE = "Find Patient"
 
 
 const Patients = ({ getAllPatients, patient: { patients, loading} }) => {
@@ -14,6 +16,9 @@ const Patients = ({ getAllPatients, patient: { patients, loading} }) => {
 
     return (
         <Fragment>
+            <Helmet>
+                <title>{ TITLE }</title>
+            </Helmet>
             <Card className="elevationSmall ">
                 <Card.Body>
                     <Card.Title>Patients</Card.Title>

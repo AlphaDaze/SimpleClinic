@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, Container, Row, Col } from 'react-bootstrap';
-import convertToDate from '../../helpers/convertToDate'
+import convertToDate from '../../utils/convertToDate'
 
 const PatientInfo = ({
     patient: {

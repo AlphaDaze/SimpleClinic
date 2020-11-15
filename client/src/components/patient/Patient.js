@@ -13,6 +13,8 @@ import {
     faPlus
 } from "@fortawesome/free-solid-svg-icons";
 
+import { Helmet } from 'react-helmet'
+
 const Patient = ({ getPatientById, patient: {patient, loading}, match}) => {
     useEffect(() => {
         getPatientById(match.params.id);
@@ -31,8 +33,12 @@ const Patient = ({ getPatientById, patient: {patient, loading}, match}) => {
 
     return (
         <Fragment>
+            
             {loading ? <Card body>Loading...</Card> : 
                 <Fragment>
+                    <Helmet>
+                            <title>{ patient.patient.firstName + " " + patient.patient.lastName }</title>
+                    </Helmet>
                     <Container>
                         <Row>
                             <Col sm={6}>

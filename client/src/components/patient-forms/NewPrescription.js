@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createPrescription } from '../../actions/prescription';
 
+import { Helmet } from 'react-helmet'
+const TITLE = "Add Prescription"
+
 let date = new Date(); 
 const currDate = date.toISOString().substr(0,10);
 
@@ -38,6 +41,10 @@ const NewPrescription = ({ createPrescription, history, match }) => {
 
     return (
         <Fragment>
+            <Helmet>
+                <title>{ TITLE }</title>
+            </Helmet>
+            
             <div className="card elevationSmall">
                 <div className="card-body">
                     <h4 className="card-title">Add Prescription</h4>

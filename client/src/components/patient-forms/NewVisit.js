@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createVisit } from '../../actions/visit'
 
+import { Helmet } from 'react-helmet'
+const TITLE = "Add Visit"
+
 const initalState = {
     patientIssue: '',
     examination: '',
@@ -39,6 +42,10 @@ const NewVisit = ({ createVisit, history, match }) => {
 
     return (
         <Fragment>
+            <Helmet>
+                <title>{ TITLE }</title>
+            </Helmet>
+            
             <div className="card elevationSmall">
                 <div className="card-body">
                     <h4 className="card-title">Add Visit</h4>
@@ -168,7 +175,7 @@ const NewVisit = ({ createVisit, history, match }) => {
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" className="btn btn-primary mr-2">Submit</button>
+                        <button type="submit" className="btn btn-primary mr-2">Add</button>
                     </form>
                 </div>
             </div>

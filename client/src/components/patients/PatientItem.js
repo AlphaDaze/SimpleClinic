@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import convertToDate from '../../helpers/convertToDate'
+import convertToDate from '../../utils/convertToDate'
 import { Row, Col } from 'react-bootstrap';
 
 const PatientItem = ({patient: { firstName, lastName, gender, birthdate, phoneNumber, address }}) => {
