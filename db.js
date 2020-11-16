@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+const config = require('./config/config');
 const connectDB = async () => {
-    const db = "mongodb://localhost/clinic";
+    const db = config.db.dbLink;
     try {
         await mongoose.connect(db, {
             useNewUrlParser: true,

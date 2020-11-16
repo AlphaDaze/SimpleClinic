@@ -15,7 +15,6 @@ export const loadUser = () => async dispatch => {
     if (localStorage.token) {
       setAuthToken(localStorage.token);
     }
-    console.log("Auth Run");
     try {
         const res = await api.get('/auth');
 
@@ -58,6 +57,5 @@ export const login = (email, password) => async dispatch => {
 
 // Logout
 export const logout = () => dispatch => {
-    console.log("logged out");
     dispatch({ type: LOGOUT });
 };
