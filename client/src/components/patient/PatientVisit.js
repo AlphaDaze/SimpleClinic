@@ -34,7 +34,7 @@ const PatientVisit = ({
                             {visitDate}
                         </Col>
                         <Col>
-                            <Button className="btnHeader btnRemove" onClick={() => deleteVisit(_id, patientID)}>
+                            <Button className="btnHeaderRight btnRemove" onClick={() => deleteVisit(_id, patientID)}>
                                 <FontAwesomeIcon icon={faMinus}  style={{paddingBottom: "0.1rem"}} size="xs" />
                             </Button>
                         </Col>

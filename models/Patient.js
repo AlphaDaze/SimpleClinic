@@ -23,7 +23,7 @@ const PatientSchema = new mongoose.Schema({
     },
     cnic: {
         type: String,
-        unique: true
+        index: {unique: false}
     },
     address: {
         firstLine: {

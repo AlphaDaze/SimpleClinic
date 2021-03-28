@@ -18,10 +18,11 @@ app.use(express.json({ extended: false }));
 if (process.env.PRODUCTION === 'true') {
   port = 9199;
 } else {
-  port = 8199
-  app.use('/api/users', require('./routes/api/users')); // enable registeration
+  port = 8199;
+  
 }
 
+app.use('/api/users', require('./routes/api/users')); // enable registeration
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/patient', auth, require('./routes/api/patient'));
 app.use('/api/patient/visit', auth, require('./routes/api/visit'));

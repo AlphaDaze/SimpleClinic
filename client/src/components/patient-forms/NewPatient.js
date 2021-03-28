@@ -7,7 +7,7 @@ import { createPatient } from '../../actions/patient';
 import { Helmet } from 'react-helmet'
 const TITLE = "Add Patient"
 
-const initalState = {
+const initialState = {
     firstName: '',
     lastName: '',
     phoneNumber: '',
@@ -23,7 +23,7 @@ const initalState = {
 };
 
 const NewPatient = ({ createPatient, history }) => {
-    const [formData, setFormData] = useState(initalState);
+    const [formData, setFormData] = useState(initialState);
 
     const {
         firstName,

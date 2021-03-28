@@ -302,9 +302,17 @@ input[type=text]::placeholder {
     border: 1px solid var(--danger2);
 }
 
-.btnHeader {
+.btnHeaderRight {
     padding: 0px;
     float: right;
+    margin: 0px;
+    height: 25px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.btnHeaderLeft {
+    padding: 0px;
     margin: 0px;
     height: 25px;
     padding-left: 0.5rem;

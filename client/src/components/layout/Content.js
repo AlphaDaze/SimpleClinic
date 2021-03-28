@@ -9,6 +9,7 @@ import PrivateRoute from '../routes/PrivateRoute';
 import Home from './Home';
 import Login from '../auth/Login';
 import NewPatient from '../patient-forms/NewPatient'
+import EditPatient from '../patient-forms/EditPatient'
 import Patients from '../patients/Patients'
 import Patient from '../patient/Patient'
 
@@ -30,6 +31,11 @@ class Content extends React.Component {
                         exact
                         path='/add-patient'
                         component={NewPatient}
+                    />
+                    <PrivateRoute
+                        exact
+                        path='/edit-patient/:id'
+                        component={EditPatient}
                     />
                     <PrivateRoute
                         exact
