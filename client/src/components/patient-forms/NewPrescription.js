@@ -7,7 +7,7 @@ import { createPrescription } from '../../actions/prescription';
 import { Helmet } from 'react-helmet'
 const TITLE = "Add Prescription"
 
-let date = new Date(); 
+const date = new Date(); 
 const currDate = date.toISOString().substr(0,10);
 
 const initalState = {
@@ -37,6 +37,7 @@ const NewPrescription = ({ createPrescription, history, match }) => {
         e.preventDefault();
         createPrescription(match.params.id, formData, history);
     }  
+    
     
 
     return (

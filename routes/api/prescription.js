@@ -10,9 +10,9 @@ const Prescription = require('../../models/Prescription');
 router.get('/:prescriptionID', async (req, res) => {
     try {
         const prescription = await Prescription.findOne({
-            _id: req.params.PrescriptionID,
+            _id: req.params.prescriptionID,
         });
-
+        
         if (!prescription) {
             return res.status(404).json({ msg: 'Prescription not found' });
         }

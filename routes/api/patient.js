@@ -156,6 +156,101 @@ router.post(
     }
 );
 
+// @router  POST api/patient
+// @desc    Update patient by ID
+// @access  Private
+router.post('/:patientID', async (req, res) => {
+    const {
+        firstName,
+        lastName,
+        phoneNumber,
+        cnic,
+        gender,
+        birthdate,
+        firstLine,
+        secondLine,
+        thirdLine,
+        city,
+        province,
+        country
+    } = req.body;
+
+    // check if required values are present
+    let valueErrors = "";
+
+    if (!firstName) {
+        valueErrors += "firstName empty, ";
+    }
+    if (!lastName) {
+        valueErrors += "lastName empty, ";
+    }
+    if (!phoneNumber) {
+        valueErrors += "phoneNumber empty, ";
+    }
+    if (!gender) {
+        valueErrors += "gender empty, ";
+    }
+    if (!birthdate) {
+        valueErrors += "birthdate empty, ";
+    }
+    if (valueErrors) {
+        return res.status(400).json({ errors: valueErrors });
+    }
+
+    // Build patient object
+    const patientFields = {
+        firstName,
+        lastName,
+        phoneNumber,
+        gender,
+        birthdate,
+        cnic: cnic || null,
+        address: {
+            firstLine: firstLine || null,
+            secondLine: secondLine || null,
+            thirdLine: thirdLine || null,
+            city: city || null,
+            province: province || null,
+            country: country || "Pakistan",
+        },
+    };
+
+    
+    try {
+        let patient = await Patient.findOne({
+            _id: req.params.patientID,
+        });
+
+
+
+        if (!patient) {
+            return res.status(404).json({ msg: 'Patient not found' });
+        }
+
+        if (patient) {
+            // update existing patient
+            patient = await Patient.findOneAndUpdate(
+                { _id: req.params.patientID },
+                { $set: patientFields },
+                { new: true }
+            );
+        } else {
+            // Create patient
+            patient = new Patient(patientFields);
+        }
+
+        await patient.save();
+        res.json(patient);
+    } catch (error) {
+        if (error.kind === 'ObjectId') {
+            return res.status(404).json({ msg: 'Patient not found' });
+        }
+        console.error(error.message);
+        res.status(500).json({ msg: 'Server Error' });
+    }
+}
+);
+
 // @router  DELETE api/patient/:patientID
 // @desc    Delete patient by ID
 // @access  Private

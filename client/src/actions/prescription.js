@@ -36,12 +36,41 @@ export const createPrescription = (patientID, formData, history) => async dispat
     }
 }
 
+// modify prescription
+export const editPrescriptionById = (prescriptionID, formData, history) => async dispatch => {
+    try {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        const res = await api.put(`/patient/prescription/${prescriptionID}`, formData, config);
+
+        dispatch({
+            type: GET_PRESCRIPTION,
+            payload: res.data
+        });
+
+        history.push('/patients/' + res.data.patientID);
+
+    } catch (err) {
+         dispatch({
+            type: PRESCRIPTION_ERROR,
+            payload: { 
+                msg: err.response.statusText, 
+                status: err.response.status 
+            }
+        })
+    }
+}
+
 
 // Get prescription by ID - not used yet
 export const getPrescriptionById = prescriptionID => async dispatch => {
     try {
         const res = await api.get(`/patient/prescription/${prescriptionID}`);
-            
+        
         dispatch({
             type: GET_PRESCRIPTION,
             payload: res.data

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { Card, Container, Row, Col, Button } from 'react-bootstrap';
@@ -6,7 +7,8 @@ import convertToDate from '../../utils/convertToDate'
 import { deletePrescription } from '../../actions/prescription';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faMinus
+    faMinus,
+    faPencilAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
 const PatientPrescription = ({
@@ -25,14 +27,23 @@ const PatientPrescription = ({
 }) => {
     const start = convertToDate(startDate);
     const end = convertToDate(endDate);
+
+    const editPrescriptionLink = "/edit-prescription/" + _id;
     
     return (
         <Card className="elevationSmall" style={{ marginBottom: "0.5rem" }}>
             <Card.Body>
                 <Card.Title >
                     <Row>
-                        <Col className="card-description row-text-space">
+                        <Col className="card-description row-text-space" style={{paddingRight: "0px"}}>
                             Prescription {index+1}
+                        </Col>
+                        <Col style={{marginRight: "5rem", paddingLeft: "0px"}}>
+                            <Link to={editPrescriptionLink}>
+                                    <Button className="btn btnTextRight" style={{marginLeft: "0.5rem"}}>
+                                        <FontAwesomeIcon icon={faPencilAlt} size="xs" style={{paddingBottom: "0.1rem"}} />
+                                    </Button>
+                            </Link>
                         </Col>
                         <Col>
                             <Button className="btnHeaderRight btnRemove" onClick={() => deletePrescription(_id, patientID)}>

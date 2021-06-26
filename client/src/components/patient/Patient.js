@@ -57,7 +57,7 @@ const Patient = ({ getPatientById, patient: {patient, loading}, match}) => {
                                                 Personal Info
                                                     <Link className="btnLink "  to={editPatientLink}>
                                                         <Button className="btn btnHeaderLeft" style={{marginLeft: "0.5rem"}}>
-                                                            <FontAwesomeIcon icon={faPencilAlt} size="xs" style={{paddingBottom: "0.1rem"}} />
+                                                            <FontAwesomeIcon icon={faPencilAlt} size="xs" />
                                                         </Button>
                                                     </Link>
                                             </Col>

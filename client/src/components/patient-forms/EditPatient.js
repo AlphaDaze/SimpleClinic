@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Card } from 'react-bootstrap';
 import { getPatientById } from '../../actions/patient';
-import { createPatient } from '../../actions/patient';
+import { editPatientById } from '../../actions/patient';
 
 import { Helmet } from 'react-helmet'
 const TITLE = "Edit Patient"
@@ -12,7 +12,7 @@ const TITLE = "Edit Patient"
 
 
 
-const EditPatient = ({ createPatient, history, getPatientById, patient: {patient, loading}, match}) => {
+const EditPatient = ({ editPatientById, history, getPatientById, patient: {patient, loading}, match}) => {
     useEffect(() => {
         getPatientById(match.params.id);
     }, [getPatientById, match.params.id]);
@@ -32,11 +32,13 @@ const EditPatient = ({ createPatient, history, getPatientById, patient: {patient
         province: 'Khyber Pakhtunkhwa',
     };
 
-    if (!loading) {
-        const pat = patient.patient;
+    console.log("Initial State", initialState);
 
+    if (!loading && patient.patient != null) {
+        const pat = patient.patient;
+        console.log("Pat", pat);
         // SPLIT INTO ARRAY OF NUMBERS - takes numbers out of string
-        if (pat.address.firstLine) {
+        if (pat != null && pat.address.firstLine != null) {
             const houseAndStreet = pat.address.firstLine.match(/^\d+|\d+\b|\d+(?=\w)/g).map(function (v) {return +v;}); //=> [4567, 4, 67]
             initialState.houseNumber = houseAndStreet[0];
             initialState.streetNumber = houseAndStreet[1];
@@ -48,13 +50,13 @@ const EditPatient = ({ createPatient, history, getPatientById, patient: {patient
         initialState.firstName = pat.firstName;
         initialState.lastName = pat.lastName;
         initialState.phoneNumber = pat.phoneNumber;
-        initialState.cnic = pat.cnic;
+        initialState.cnic = (pat.cnic) ? pat.cnic : '';
         initialState.gender = pat.gender;
         initialState.birthdate = dob;
-        initialState.sector = pat.address.secondLine;
-        initialState.area = pat.address.thirdLine;
-        initialState.city = pat.address.city;
-        initialState.province = pat.address.province;
+        initialState.sector = (pat.address.secondLine) ? pat.address.secondLine : '';
+        initialState.area = (pat.address.thirdLine) ? pat.address.thirdLine : '';
+        initialState.city = (pat.address.city) ? pat.address.city : '';
+        initialState.province = (pat.address.province) ? pat.address.province : '';
     }
     
 
@@ -74,7 +76,13 @@ const EditPatient = ({ createPatient, history, getPatientById, patient: {patient
         city,
         province,
     } = formData;
+    
+    console.log("Form Data", formData);
+    console.log("Initial State", initialState);
 
+    useEffect(() => {
+        setFormData({...formData});
+    }, [initialState.firstName]);
 
 
     const onTextChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -108,8 +116,8 @@ const EditPatient = ({ createPatient, history, getPatientById, patient: {patient
             parsedData.firstLine = "House No. " + formData.houseNumber + ", Street No. " + formData.streetNumber;
             parsedData.province = formData.province;
         }
-
-        createPatient(parsedData, history);
+        console.log(parsedData)
+        editPatientById(match.params.id, parsedData, history, true);
     }
 
 
@@ -347,7 +355,7 @@ const EditPatient = ({ createPatient, history, getPatientById, patient: {patient
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" className="btn btn-primary mr-2">Edit</button>
+                                    <button type="submit" className="btn btn-primary mr-2">Save</button>
                                 </form>
                             </div>
                         </div>
@@ -360,7 +368,7 @@ const EditPatient = ({ createPatient, history, getPatientById, patient: {patient
 }
 
 EditPatient.propTypes = {
-    createPatient: PropTypes.func.isRequired,
+    editPatientById: PropTypes.func.isRequired,
     getPatientById: PropTypes.func.isRequired,
     patient: PropTypes.object.isRequired,
 }
@@ -370,4 +378,4 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps, { createPatient, getPatientById })(withRouter(EditPatient));
+export default connect(mapStateToProps, { editPatientById, getPatientById })(withRouter(EditPatient));

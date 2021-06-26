@@ -27,7 +27,7 @@ const PatientPrint = React.forwardRef(({patient, prescriptions, visits}, ref) =>
     
     return (
         <div>
-            <div className="header-info"> 
+            <div className="patient-header"> 
                 <ul className="ul-horizontal">
                     <li className="li-horizontal"><div style={{marginLeft: "130px", fontSize: "20px"}}>{patient.firstName} {patient.lastName}</div></li>
                     <li className="li-horizontal"><div style={{marginLeft: "220px", marginTop: "5px", fontSize: "14px"}}>{dob}</div></li>

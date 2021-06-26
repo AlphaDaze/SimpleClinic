@@ -48,6 +48,37 @@ export const createPatient = (formData, history, edit = false) => async dispatch
     }
 }
 
+// Update patient by ID
+export const editPatientById = (patientID, formData, history) => async dispatch => {
+    try {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        const res = await api.post(`/patient/${patientID}`, formData, config);
+            
+        dispatch({
+            type: GET_PATIENT,
+            payload: res.data
+        });
+
+        dispatch(setAlert('Patient Updated'));
+
+        // redirect if it isnt editing
+        history.push('/patients/' + res.data._id);
+    } catch (err) {
+         dispatch({
+            type: PATIENT_ERROR,
+            payload: { 
+                msg: err.response.statusText, 
+                status: err.response.status 
+            }
+        })
+    }
+}
+
 // Get all patients
 export const getAllPatients = () => async dispatch => {
     //dispatch({ type: CLEAR_PATIENT });

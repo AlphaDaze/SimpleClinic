@@ -14,6 +14,7 @@ import Patients from '../patients/Patients'
 import Patient from '../patient/Patient'
 
 import NewPrescription from '../patient-forms/NewPrescription'
+import EditPrescription from '../patient-forms/EditPrescription'
 import NewVisit from '../patient-forms/NewVisit'
 
 import Alert from '../layout/Alert';
@@ -51,6 +52,11 @@ class Content extends React.Component {
                         exact
                         path='/patients/:id/add-prescription'
                         component={NewPrescription}
+                    />
+                    <PrivateRoute
+                        exact
+                        path='/edit-prescription/:id/'
+                        component={EditPrescription}
                     />
                     <PrivateRoute
                         exact

@@ -11,8 +11,8 @@ const initialState = {
 
 const prescription = (state = initialState, action) => {
     const { type, payload } = action;
-    
     switch (type) {
+        
         case GET_PRESCRIPTION:
             return {
                 ...state, 

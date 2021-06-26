@@ -319,6 +319,24 @@ input[type=text]::placeholder {
     padding-right: 0.5rem;
 }
 
+.btnTextRight {
+    float: left;
+    background-color: var(--wbhue2);
+    border: 1px solid var(--wbhue2);
+    transition: 0.4s;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.26);
+    margin: 10px;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+    margin-top: -5px;
+    height: 25px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+
 
 
 .cardHeader {
