@@ -66,7 +66,6 @@ export const editPatientById = (patientID, formData, history) => async dispatch 
 
         dispatch(setAlert('Patient Updated'));
 
-        // redirect if it isnt editing
         history.push('/patients/' + res.data._id);
     } catch (err) {
          dispatch({
@@ -109,6 +108,30 @@ export const getPatientById = patientID => async dispatch => {
             type: GET_PATIENT,
             payload: res.data
         });
+    } catch (err) {
+         dispatch({
+            type: PATIENT_ERROR,
+            payload: { 
+                msg: err.response.statusText, 
+                status: err.response.status 
+            }
+        })
+    }
+}
+
+export const deletePatient = (patientID, history) => async dispatch => {
+    try {
+        await api.delete(`/patient/${patientID}`);
+
+        const res = await api.get('/patient');
+
+        dispatch({
+            type: GET_PATIENTS,
+            payload: res.data
+        });
+
+        dispatch(setAlert('Patient Removed', 'success')); // fix alerts
+        history.push('/patients/');
     } catch (err) {
          dispatch({
             type: PATIENT_ERROR,

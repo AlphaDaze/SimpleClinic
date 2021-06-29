@@ -1,7 +1,7 @@
-import React from 'react';
+import {React, useState} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
-import { Card, Container, Row, Col, Button } from 'react-bootstrap';
+import { Card, Container, Row, Col, Button, Modal } from 'react-bootstrap';
 import convertToDate from '../../utils/convertToDate'
 import { deleteVisit } from '../../actions/visit';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,6 +17,7 @@ const PatientVisit = ({
         examination,
         diagnosis,
         vitals,
+        pft,
         followup,
         date
     },
@@ -24,6 +25,11 @@ const PatientVisit = ({
 }) => {
     const visitDate = convertToDate(date);
     const follow = convertToDate(followup);
+
+    // Delete Dialogue
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     return (
         <Card>
@@ -34,9 +40,24 @@ const PatientVisit = ({
                             {visitDate}
                         </Col>
                         <Col>
-                            <Button className="btnHeaderRight btnRemove" onClick={() => deleteVisit(_id, patientID)}>
+                            <Button className="btnHeaderRight btnRemove" onClick={handleShow}>
                                 <FontAwesomeIcon icon={faMinus}  style={{paddingBottom: "0.1rem"}} size="xs" />
                             </Button>
+
+                            <Modal show={show} onHide={handleClose} animation={false}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Delete Visit</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>Are you sure you want to delete the visit?</Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="secondary" onClick={handleClose}>
+                                        No
+                                    </Button>
+                                    <Button className="btnRemove" variant="primary" onClick={() => { deleteVisit(_id, patientID); handleClose();  }}>
+                                        Yes
+                                    </Button>
+                                </Modal.Footer>
+                            </Modal>
                         </Col>
                     </Row>
                 </Card.Title>
@@ -69,6 +90,15 @@ const PatientVisit = ({
                     <Row className="row-text-space">
                         <Col className="font-weight-bold">Urea</Col>
                         <Col sm={8}>{vitals.urea}</Col>
+                    </Row>
+
+                    <Row className="row-text-space">
+                        <Col className="font-weight-bold">FEV1</Col>
+                        <Col sm={8}>{pft.FEV1}</Col>
+                    </Row>
+                    <Row className="row-text-space">
+                        <Col className="font-weight-bold">FVC</Col>
+                        <Col sm={8}>{pft.FVC}</Col>
                     </Row>
 
                     <Row className="row-text-space">

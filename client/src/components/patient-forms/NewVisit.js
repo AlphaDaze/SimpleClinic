@@ -15,6 +15,8 @@ const initalState = {
     haemoglobin: '',
     urea: '',
     creatinine: '',
+    FEV1: '',
+    FVC: '',
     followup: ''
 };
 
@@ -29,6 +31,8 @@ const NewVisit = ({ createVisit, history, match }) => {
         haemoglobin,
         urea,
         creatinine,
+        FEV1,
+        FVC,
         followup,
     } = formData;
 
@@ -154,6 +158,39 @@ const NewVisit = ({ createVisit, history, match }) => {
                                             className="form-control"
                                             name='urea'
                                             value={urea}
+                                            onChange={e => onChange(e)}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p className="card-description spacerAboveSmall">
+                            PFT
+                        </p>
+                        <div className="row">
+                            <div className="col-md-6">
+                                <div className="form-group row">
+                                    <label className="col-sm-3 col-form-label">FEV1</label>
+                                    <div className="col-sm-9">
+                                        <input type="number"
+                                            placeholder="999"
+                                            className="form-control"
+                                            name='FEV1'
+                                            value={FEV1}
+                                            onChange={e => onChange(e)}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <div className="form-group row">
+                                    <label className="col-sm-3 col-form-label">FVC</label>
+                                    <div className="col-sm-9">
+                                        <input type="number"
+                                            placeholder="999"
+                                            className="form-control"
+                                            name='FVC'
+                                            value={FVC}
                                             onChange={e => onChange(e)}
                                         />
                                     </div>

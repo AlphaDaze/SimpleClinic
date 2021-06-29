@@ -1,4 +1,4 @@
-/*( https://palx.jxnblk.com/ */
+
 :root {
     --primary: #00c7c7;
     --primary_light1: #00dada;
@@ -302,6 +302,12 @@ input[type=text]::placeholder {
     border: 1px solid var(--danger2);
 }
 
+.btnDeletePatient {
+    margin-top: 1rem;
+    margin-right: 0px;
+    float: right;
+}
+
 .btnHeaderRight {
     padding: 0px;
     float: right;
@@ -334,6 +340,10 @@ input[type=text]::placeholder {
     height: 25px;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+}
+
+.warningBtn {
+    background: var(--danger2);
 }
 
 

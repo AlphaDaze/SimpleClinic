@@ -37,8 +37,10 @@ router.post('/new/:patientID', async (req, res) => {
         diagnosis,
         whiteBlood,
         haemoglobin,
-        urea,
         creatinine,
+        urea,
+        FEV1,
+        FVC,
         followup,
     } = req.body;
 
@@ -54,6 +56,10 @@ router.post('/new/:patientID', async (req, res) => {
             urea: urea || null,
             creatinine: creatinine || null,
         },
+        pft: {
+            FEV1: FEV1 || null,
+            FVC: FVC || null,
+        }
     };
 
     try {
@@ -87,6 +93,8 @@ router.put('/:visitID', async (req, res) => {
         haemoglobin,
         creatinine,
         urea,
+        FEV1,
+        FVC,
         followup,
     } = req.body;
 
@@ -100,6 +108,10 @@ router.put('/:visitID', async (req, res) => {
             haemoglobin: haemoglobin || null,
             urea: urea || null,
             creatinine: creatinine || null,
+        },
+        pft: {
+            FEV1: FEV1 || null,
+            FVC: FVC || null,
         },
     };
 

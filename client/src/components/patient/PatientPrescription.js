@@ -1,8 +1,8 @@
-import React from 'react';
+import {React, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
-import { Card, Container, Row, Col, Button } from 'react-bootstrap';
+import { Card, Container, Row, Col, Button, Modal } from 'react-bootstrap';
 import convertToDate from '../../utils/convertToDate'
 import { deletePrescription } from '../../actions/prescription';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -29,7 +29,12 @@ const PatientPrescription = ({
     const end = convertToDate(endDate);
 
     const editPrescriptionLink = "/edit-prescription/" + _id;
-    
+
+    // Delete Dialogue
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+        
     return (
         <Card className="elevationSmall" style={{ marginBottom: "0.5rem" }}>
             <Card.Body>
@@ -45,10 +50,25 @@ const PatientPrescription = ({
                                     </Button>
                             </Link>
                         </Col>
-                        <Col>
-                            <Button className="btnHeaderRight btnRemove" onClick={() => deletePrescription(_id, patientID)}>
+                        <Col> 
+                            <Button className="btnHeaderRight btnRemove" onClick={handleShow}>
                                 <FontAwesomeIcon icon={faMinus}  style={{paddingBottom: "0.1rem"}} size="xs" />
                             </Button>
+
+                            <Modal show={show} onHide={handleClose} animation={false}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Delete Prescription</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>Are you sure you want to delete the prescription!</Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="secondary" onClick={handleClose}>
+                                        No
+                                    </Button>
+                                    <Button className="btnRemove" variant="primary" onClick={() => { deletePrescription(_id, patientID); handleClose();  }}>
+                                        Yes
+                                    </Button>
+                                </Modal.Footer>
+                            </Modal>
                         </Col>
                     </Row>
                 </Card.Title>

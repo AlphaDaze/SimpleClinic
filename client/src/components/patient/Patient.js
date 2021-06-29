@@ -1,9 +1,10 @@
-import React, { Fragment, useEffect, useRef} from 'react'
+import React, { Fragment, useEffect, useRef, useState} from 'react'
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getPatientById } from '../../actions/patient';
-import { Card, Container, Row, Col, Button } from 'react-bootstrap';
+import { Card, Container, Row, Col, Button, Modal } from 'react-bootstrap';
+import { deletePatient } from '../../actions/patient';
 import PatientInfo from './PatientInfo'
 import PatientPrescription from './PatientPrescription'
 import PatientVisit from './PatientVisit'
@@ -19,12 +20,16 @@ import {
 
 import { Helmet } from 'react-helmet'
 
-const Patient = ({ getPatientById, patient: {patient, loading}, match}) => {
+const Patient = ({ getPatientById, deletePatient, patient: {patient, loading}, match, history }) => {
     useEffect(() => {
         getPatientById(match.params.id);
     }, [getPatientById, match.params.id]);
     
     const componentRef = useRef();
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     if (!loading && !patient.prescriptions) {
         return (
@@ -38,6 +43,9 @@ const Patient = ({ getPatientById, patient: {patient, loading}, match}) => {
     const addPrescriptionLink = "/patients/" + match.params.id + "/add-prescription";
     const addVisitLink = "/patients/" + match.params.id + "/add-visit";
     const editPatientLink = "/edit-patient/" + match.params.id;
+
+    // Delete Dialogue
+    
 
     return (
         <Fragment>
@@ -130,10 +138,28 @@ const Patient = ({ getPatientById, patient: {patient, loading}, match}) => {
                                 </Card>
                             </Col>
                         </Row>
+
+                        <Button className="btnRemove btnDeletePatient"  onClick={handleShow}>
+                            Delete Patient
+                        </Button>
+                        <Modal show={show} onHide={handleClose} animation={false}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Delete Prescription</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>Are you sure you want to delete the prescription!</Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="secondary" onClick={handleClose}>
+                                        No
+                                    </Button>
+                                    <Button className="btnRemove" variant="primary" onClick={() => { deletePatient(patient.patient._id, history); handleClose();  }}>
+                                        Yes
+                                    </Button>
+                                </Modal.Footer>
+                            </Modal>
                     </Container>
                     <div style={{ display: "none" }}><ComponentToPrint patient={patient.patient} 
                         visits={patient.visits} prescriptions={patient.prescriptions} ref={componentRef} /></div>
-
+                    
                 </Fragment> }
         </Fragment>
     )
@@ -142,10 +168,11 @@ const Patient = ({ getPatientById, patient: {patient, loading}, match}) => {
 Patient.propTypes = {
     getPatientById: PropTypes.func.isRequired,
     patient: PropTypes.object.isRequired,
+    deletePatient: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
     patient: state.patient,
 })
 
-export default connect(mapStateToProps, { getPatientById })(Patient)
+export default connect(mapStateToProps, { getPatientById, deletePatient })(Patient)

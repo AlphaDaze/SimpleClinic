@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { Card } from 'react-bootstrap';
 import { getPrescriptionById } from '../../actions/prescription';
 import { editPrescriptionById } from '../../actions/prescription';
-import convertToDate from '../../utils/convertToDate'
 
 import { Helmet } from 'react-helmet'
 const TITLE = "Edit Patient"

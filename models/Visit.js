@@ -33,6 +33,14 @@ const VisitSchema = new mongoose.Schema({
         //  type: String,
         //n},
     },
+    pft: {
+        FEV1: {
+            type: Number,
+        },
+        FVC: {
+            type: Number,
+        },
+    },
     followup: {
         type: Date,
     },

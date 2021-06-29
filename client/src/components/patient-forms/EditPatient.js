@@ -76,9 +76,6 @@ const EditPatient = ({ editPatientById, history, getPatientById, patient: {patie
         city,
         province,
     } = formData;
-    
-    console.log("Form Data", formData);
-    console.log("Initial State", initialState);
 
     useEffect(() => {
         setFormData({...formData});
