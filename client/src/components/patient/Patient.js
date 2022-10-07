@@ -7,6 +7,7 @@ import { Card, Container, Row, Col, Button, Modal } from 'react-bootstrap';
 import { deletePatient } from '../../actions/patient';
 import PatientInfo from './PatientInfo'
 import PatientPrescription from './PatientPrescription'
+import PrescriptionList from '../printing/PrescriptionList'
 import PatientVisit from './PatientVisit'
 import ComponentToPrint from '../printing/ComponentToPrint'
 import ReactToPrint from "react-to-print";
@@ -26,10 +27,14 @@ const Patient = ({ getPatientById, deletePatient, patient: {patient, loading}, m
     }, [getPatientById, match.params.id]);
     
     const componentRef = useRef();
-
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    // Delete Dialogue
+    const [showDelete, setShowDelete] = useState(false);
+    const closeDelete = () => setShowDelete(false);
+    const openDelete = () => setShowDelete(true);
+    // Print Dialogue
+    const [showPrint, setShowPrint] = useState(false);
+    const closePrint = () => setShowPrint(false);
+    const openPrint = () => setShowPrint(true);
 
     if (!loading && !patient.prescriptions) {
         return (
@@ -44,7 +49,7 @@ const Patient = ({ getPatientById, deletePatient, patient: {patient, loading}, m
     const addVisitLink = "/patients/" + match.params.id + "/add-visit";
     const editPatientLink = "/edit-patient/" + match.params.id;
 
-    // Delete Dialogue
+  
     
 
     return (
@@ -70,12 +75,42 @@ const Patient = ({ getPatientById, deletePatient, patient: {patient, loading}, m
                                                     </Link>
                                             </Col>
                                             <Col>
-                                                <ReactToPrint
-                                                    trigger={() => <Button className="btn btnHeaderRight">
-                                                                        <FontAwesomeIcon icon={faPrint} size="xs" style={{paddingBottom: "0.1rem"}} />
-                                                                    </Button>}
-                                                    content={() => componentRef.current}
-                                                />
+                                                <Button className="btn btnHeaderRight" onClick={openPrint}>
+                                                    <FontAwesomeIcon icon={faPrint} size="xs" style={{paddingBottom: "0.1rem"}} />
+                                                </Button>
+                                                <Modal dialogClassName="printingModal" show={showPrint} onHide={closePrint} animation={false}>
+                                                    <Modal.Header closeButton>
+                                                        <Modal.Title>Print Prescription</Modal.Title>
+                                                    </Modal.Header>
+                                                    <Modal.Body>
+														<Row>
+                                                            <Col>
+														   {patient.prescriptions.length > 0 ? ((
+																patient.prescriptions.map((prescription, index) => (
+																	<PrescriptionList prescription={prescription} index={index} key={prescription._id}/>
+																)))
+																) : <Card.Text>No prescriptions added, Add one here!‏‏‎</Card.Text>}
+                                                            </Col>
+                                                            <Col>
+                                                                    Test
+                                                            </Col>
+                                                        </Row>
+						
+                                                    </Modal.Body>
+                                                    <Modal.Footer>
+                                                        <Button variant="secondary" onClick={closePrint}>
+                                                            Cancel
+                                                        </Button>
+                                                        
+                                                        <ReactToPrint
+                                                            trigger={() => <Button variant="primary" onClick={() => { deletePatient(patient.patient._id, history); closePrint();  }}>
+                                                                                Print
+                                                                            </Button>}
+                                                            content={() => componentRef.current}
+                                                        />
+                                                    </Modal.Footer>
+                                                </Modal>
+                                                
                                             </Col>
                                         </Row>
                                     </Card.Header>
@@ -139,23 +174,23 @@ const Patient = ({ getPatientById, deletePatient, patient: {patient, loading}, m
                             </Col>
                         </Row>
 
-                        <Button className="btnRemove btnDeletePatient"  onClick={handleShow}>
+                        <Button className="btnRemove btnDeletePatient"  onClick={openDelete}>
                             Delete Patient
                         </Button>
-                        <Modal show={show} onHide={handleClose} animation={false}>
-                                <Modal.Header closeButton>
-                                    <Modal.Title>Delete Prescription</Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body>Are you sure you want to delete the prescription!</Modal.Body>
-                                <Modal.Footer>
-                                    <Button variant="secondary" onClick={handleClose}>
-                                        No
-                                    </Button>
-                                    <Button className="btnRemove" variant="primary" onClick={() => { deletePatient(patient.patient._id, history); handleClose();  }}>
-                                        Yes
-                                    </Button>
-                                </Modal.Footer>
-                            </Modal>
+                        <Modal show={showDelete} onHide={closeDelete} animation={false}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Delete Prescription</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>Are you sure you want to delete the prescription!</Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={closeDelete}>
+                                    No
+                                </Button>
+                                <Button className="btnRemove" variant="primary" onClick={() => { deletePatient(patient.patient._id, history); closeDelete();  }}>
+                                    Yes
+                                </Button>
+                            </Modal.Footer>
+                        </Modal>
                     </Container>
                     <div style={{ display: "none" }}><ComponentToPrint patient={patient.patient} 
                         visits={patient.visits} prescriptions={patient.prescriptions} ref={componentRef} /></div>

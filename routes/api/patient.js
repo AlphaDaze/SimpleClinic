@@ -15,16 +15,7 @@ add auth to other functions too
 // @access  Public  - make private
 router.get('/', async (req, res) => {
     try {
-        const patients = await Patient.find().select({
-            firstName: 1,
-            lastName: 1,
-            phoneNumber: 1,
-            gender: 1,
-            birthdate: 1,
-            address: {
-                firstLine: 1,
-            }
-        });
+        const patients = await Patient.find().select("firstName lastName phoneNumber gender birthdate address");
 
         return res.json(patients);
     } catch (error) {
