@@ -64,7 +64,7 @@ const SideBar = ({ toggle, isOpen, toggleLink, auth: { isAuthenticated, loading 
           <FontAwesomeIcon icon={faTimes} size="xs" />
         </Button>
         <NavLink to="/" onClick={toggleLink}>
-              <h3>Jamshed's Clinic</h3>
+              <h3>Alam's Clinic</h3>
           </NavLink>
       </div>
 

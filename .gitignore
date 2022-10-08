@@ -27,11 +27,6 @@ yarn-error.log*
 # future plan
 TODO.todo
 
-# custom db
-config/
-config.js
-remotedb.js
-
 # remove package lock files
 package-lock.json
 
