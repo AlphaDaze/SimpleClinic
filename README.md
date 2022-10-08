@@ -36,7 +36,7 @@ I worked on this project starting October 2020 to March 2021 for a doctor who ha
 
 Some or all of this website will be integrated by a soon-to-be completed hospital for their private clinics - [Life Care Hospital](https://www.facebook.com/officiallifecare/)
 
-![Overview GIF](https://s4.gifyu.com/images/overviewShowcase.gif)
+![Overview GIF](https://github.com/AlphaDaze/SimpleClinic/blob/master/images/overviewShowcase.gif)
 
 <!-- DOCUMENTATION -->
 
