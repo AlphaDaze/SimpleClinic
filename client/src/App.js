@@ -15,7 +15,7 @@ import setAuthToken from './utils/setAuthToken';
 import { LOGOUT } from './actions/constants'
 
 import { Helmet } from 'react-helmet'
-const TITLE = "Jamshed's Clinic"
+const TITLE = "Alam's Clinic"
 
 class App extends React.Component {
     constructor(props) {
