@@ -1,6 +1,3 @@
-<br />
-<br />
-
 <h1 align="center">
   SimpleClinic - Patient Management System
 </h1>
@@ -28,7 +25,6 @@
   </b>
 </h6>
 
-<br />
 
 ## About
 
