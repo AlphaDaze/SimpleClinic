@@ -30,7 +30,7 @@
 
 I worked on this project starting October 2020 to March 2021 for a doctor who had wanted an easier way to manage his patients and writing prescriptions. The existing solutions are very complicated to learn to use and setup. I wanted to create something that would be easier for clinics and doctors to get up running and be easy to learn and use while maintaining patient data safe with encryption.
 
-Some or all of this website will be integrated by a soon-to-be completed hospital for their private clinics - [Life Care Hospital](https://www.facebook.com/officiallifecare/)
+Website integrated and utilised by private clinics.
 
 ![Overview GIF](https://github.com/AlphaDaze/SimpleClinic/blob/master/images/overviewShowcase.gif)
 
